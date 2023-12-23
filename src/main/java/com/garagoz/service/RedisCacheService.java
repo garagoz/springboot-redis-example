@@ -1,5 +1,8 @@
 package com.garagoz.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class RedisCacheService {
 
     public String longRunningMethod() throws  InterruptedException {
