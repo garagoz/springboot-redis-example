@@ -10,11 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class RedisCacheController {
 
+    private int count = 0;
+
     @Autowired
     private RedisCacheService redisCacheService;
 
     @GetMapping
-    public String cacheController() throws  InterruptedException{
+    public String cacheController() throws InterruptedException {
+
+        if(count == 5) {
+            redisCacheService.clearCache();
+            count = 0;
+        }
+
+        count++;
+
         return redisCacheService.longRunningMethod();
     }
 }
